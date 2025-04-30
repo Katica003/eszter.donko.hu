@@ -1,0 +1,68 @@
+---
+import logo from '@/assets/logo.png'
+---
+
+<header>
+  <a href="/"><img src={logo.src} /></a>
+  <nav>
+    <ul>
+      <li><a href="/bemutatkozas">Bemutatkozás</a></li>
+      <li><a href="/tanulmanyok">Tanulmányok</a></li>
+      <li><a href="/tanulmanyok#elismeresek">Elismerések</a></li>
+      <li>
+        <details>
+          <summary>Tervek</summary>
+          <ul>
+            <li><a href="/tervek#tanoda">Tanoda</a></li>
+            <li><a href="/tervek#furdohaz">Fürdőház</a></li>
+          </ul>
+        </details>
+      </li>
+      <li><a href="/kitekintes">Kitekintés</a></li>
+      <li><a href="/kapcsolat">Kapcsolat</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    height: 48px;
+
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    height: 32px;
+  }
+
+  nav {
+    margin-left: auto;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  nav > ul {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+  }
+
+  /* nav > ul > li { */
+  /*   padding: 4px; */
+  /* } */
+
+  a {
+    text-decoration: unset;
+    color: unset;
+  }
+
+  details > ul {
+    position: absolute;
+  }
+</style>
