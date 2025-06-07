@@ -15,6 +15,7 @@ import logo from '@/assets/logo.png'
           <ul>
             <li><a href="/tervek#tanoda">Tanoda</a></li>
             <li><a href="/tervek#furdohaz">Fürdőház</a></li>
+            <li><a href="/tervek#TDK">TDK</a></li>
           </ul>
         </details>
       </li>
@@ -24,14 +25,26 @@ import logo from '@/assets/logo.png'
   </nav>
 </header>
 
+<script>
+  document.body.addEventListener('click', () => {
+    document.querySelectorAll('details').forEach((d) => (d.open = false))
+  })
+</script>
+
 <style>
   header {
+    /* position: sticky; */
+    /* top: 0px; */
+
     height: 48px;
 
     padding: 8px;
 
     display: flex;
     align-items: center;
+    /* justify-content: space-between; */
+
+    background-color: var(--header-color);
   }
 
   img {
@@ -49,20 +62,70 @@ import logo from '@/assets/logo.png'
 
   nav > ul {
     display: flex;
-    list-style: none;
+    /* align-items: center; TODO: Is this really necessary? No, it's not... */
     gap: 8px;
+
+    list-style: none;
   }
 
-  /* nav > ul > li { */
-  /*   padding: 4px; */
-  /* } */
+  li > a,
+  summary {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+
+    border-radius: 4px;
+  }
+
+  li > a:hover,
+  summary:hover {
+    background-color: color-mix(
+      in oklab,
+      var(--background-color) 25%,
+      transparent
+    );
+  }
 
   a {
     text-decoration: unset;
     color: unset;
   }
 
+  summary::marker {
+    content: '';
+  }
+
+  summary::after {
+    --base-rotation: 225deg;
+
+    content: '';
+
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+
+    margin-top: -2px;
+    margin-left: 6px;
+    margin-right: 6px;
+
+    translate: 0px -4px;
+    rotate: var(--base-rotation);
+    transition:
+      rotate 0.25s,
+      translate 0.25s;
+
+    box-shadow: inset 1px 1px;
+  }
+
+  details[open] > summary::after {
+    translate: 0px -2px;
+    rotate: calc(var(--base-rotation) - 180deg);
+  }
+
   details > ul {
     position: absolute;
+    background-color: var(--header-color);
+    border-radius: 4px;
+    z-index: 1;
   }
 </style>
