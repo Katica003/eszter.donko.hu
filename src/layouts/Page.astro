@@ -3,5 +3,15 @@ import MainLayout from '@/layouts/Main.astro'
 ---
 
 <MainLayout>
-  <slot />
+  <div class="container">
+    <slot />
+  </div>
 </MainLayout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 64px;
+  }
+</style>

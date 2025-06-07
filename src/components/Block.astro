@@ -1,0 +1,28 @@
+---
+const { title, ...rest } = Astro.props
+
+import underline from '@/assets/underline.png'
+---
+
+<div {...rest}>
+  <h2>{title}</h2>
+  <img src={underline.src} />
+  <p>
+    <slot />
+  </p>
+</div>
+
+<style>
+  h2 {
+    margin-bottom: 0;
+  }
+
+  img {
+    height: 16px;
+    margin-left: -16px;
+  }
+
+  p {
+    margin-top: 0;
+  }
+</style>

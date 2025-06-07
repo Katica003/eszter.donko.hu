@@ -1,7 +1,49 @@
 ---
 import PageLayout from '@/layouts/Page.astro'
+
+import profile from '@/assets/profile.jpg'
 ---
 
 <PageLayout>
-  <p>🚧 TODO 🚧</p>
+  <div id="container">
+    <div id="content">
+      <p>
+        Donkó Eszter vagyok, jelenleg időm nagy részét Budaörs utcáin és
+        játszóteren töltöm egy két éves kisfiú után futva. Az anyaság mellett
+        nagyon fontos számomra, hogy mindig legyen valamilyen kretív saját
+        projektem. Jelenleg épp a családi mesekönyvünknek keresek nyomdát, de
+        szívesen tervezek és nyomtatok 3D-s okosságokat otthonunkba, vagy
+        forrasztok meg rossznak vélt hangkábeleket. Mindenért tudok lelkesedni,
+        főleg ha van kivel elkezdeni, menni, csinálni.
+      </p>
+      <p>
+        A BME Építészmérnök karán végeztem, ahol teljesen magával ragadott az
+        építészlét sokszínűsége. Lelkesen követem az itthoni szakmai híreket,
+        szívesen tanulok, szívom magamba a tudást mind a minket körülvevő
+        épületeinkről, helyekről, mind pedig a világban elérhető új
+        technológiákról, szoftverekről.
+      </p>
+    </div>
+    <img src={profile.src} />
+  </div>
 </PageLayout>
+
+<style>
+  div#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  div#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  img {
+    padding: 24px;
+    width: 100%;
+  }
+</style>

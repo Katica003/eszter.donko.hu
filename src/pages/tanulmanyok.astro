@@ -1,7 +1,113 @@
 ---
 import PageLayout from '@/layouts/Page.astro'
+
+import Block from '@/components/Block.astro'
+
+import first from '@/assets/photos/1.jpg'
+import second from '@/assets/photos/2.jpg'
+import third from '@/assets/drawings/1.png'
+import fourth from '@/assets/photos/3.jpg'
 ---
 
 <PageLayout>
-  <p>🚧 TODO 🚧</p>
+  <h1>Tanulmányok</h1>
+  <div id="blockContainer">
+    <Block title="Tanulmányok">
+      <p>
+        2003-2011:<br />
+        Budaörsi Herman Ottó Általános Iskola
+      </p>
+      <p>
+        2011-2016:<br />
+        Budaörsi Illyés Gyula Gimnázium,Technikum és Szakképző Iskola
+      </p>
+      <p>
+        2016-2021:<br />
+        Műszaki Egyetem és Gazdaságttudományi Egyetem (BME)<br />
+        Építészmérnöki Kar (ÉPK), tervezői szakirány
+      </p>
+      <p>
+        2020:<br />
+        Faculty of Architecture - KU Leuven (Erasmus félév)
+      </p>
+    </Block>
+
+    <Block title="Szakmai tevékenységek">
+      <p>DEKON építésziroda, szakmai gyakorlat</p>
+      <p>BTR Design Műterem, szakmai gyakorlat és kisebb projektek</p>
+      <p>
+        2022 csoportos kiállításon való részvétel - Középülettervezési Tanszék
+      </p>
+      <p>2018 Perbál Építőtábor</p>
+      <p>2019 Monor Építőtábor</p>
+      <p>2019 Solar Decathlon - Koeb</p>
+      <p>2021 tavasz Középülettervezési Tanszék Demonstátor</p>
+    </Block>
+
+    <Block title="Programismeret">
+      <p>ArchiCAD</p>
+      <p>Gimp</p>
+      <p>Inkscape</p>
+      <p>Krita</p>
+      <p>SketchUp</p>
+      <p>Blender - Bonsai</p>
+    </Block>
+
+    <Block title="Nelvtudás">
+      <p>angol (B2)</p>
+      <p>német (B2)</p>
+    </Block>
+
+    <Block title="Egyéb kompetenciák">
+      <p>B2 jogosítvány</p>
+      <p>ECDL vizsga</p>
+    </Block>
+
+    <Block id="elismeresek" title="Elismerések">
+      <p>
+        2019. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
+        Cím: A szocreál rétegei <br />
+        Társszerző: Örökös-Tóth Eszter, Konzulens: Kissfazekas Kornélia PhD
+      </p>
+      <p>
+        2020. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
+        Cím: Természetesen - Jelenlét a megtörtségben <br />
+        Társszerző: Örökös-Tóth Eszter, Konzulens: Kemes Balázs DLA
+      </p>
+      <p>2022 MÉSZ Diplomadíj - Dícséret</p>
+    </Block>
+  </div>
+
+  <div id="images">
+    <img src={first.src} />
+    <img src={second.src} />
+    <img src={third.src} />
+    <img src={fourth.src} />
+  </div>
 </PageLayout>
+
+<style>
+  #blockContainer {
+    display: grid;
+  }
+
+  @media (min-width: 1000px) {
+    #blockContainer {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #elismeresek {
+      grid-column: span 2;
+      margin: auto;
+    }
+  }
+
+  #images {
+    display: flex;
+    gap: 8px;
+  }
+
+  #images > img {
+    min-width: 0;
+  }
+</style>
