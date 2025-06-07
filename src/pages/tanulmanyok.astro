@@ -62,21 +62,21 @@ import fourth from '@/assets/photos/3.jpg'
       <p>B2 jogosítvány</p>
       <p>ECDL vizsga</p>
     </Block>
-
-    <Block id="elismeresek" title="Elismerések">
-      <p>
-        2019. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
-        Cím: A szocreál rétegei <br />
-        Társszerző: Örökös-Tóth Eszter, Konzulens: Kissfazekas Kornélia PhD
-      </p>
-      <p>
-        2020. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
-        Cím: Természetesen - Jelenlét a megtörtségben <br />
-        Társszerző: Örökös-Tóth Eszter, Konzulens: Kemes Balázs DLA
-      </p>
-      <p>2022 MÉSZ Diplomadíj - Dícséret</p>
-    </Block>
   </div>
+
+  <Block id="elismeresek" title="Elismerések">
+    <p>
+      2019. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
+      Cím: A szocreál rétegei <br />
+      Társszerző: Örökös-Tóth Eszter, Konzulens: Kissfazekas Kornélia PhD
+    </p>
+    <p>
+      2020. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
+      Cím: Természetesen - Jelenlét a megtörtségben <br />
+      Társszerző: Örökös-Tóth Eszter, Konzulens: Kemes Balázs DLA
+    </p>
+    <p>2022 MÉSZ Diplomadíj - Dícséret</p>
+  </Block>
 
   <div id="images">
     <img src={first.src} />
@@ -87,27 +87,28 @@ import fourth from '@/assets/photos/3.jpg'
 </PageLayout>
 
 <style>
-  #blockContainer {
-    display: grid;
-  }
-
   @media (min-width: 1000px) {
     #blockContainer {
-      grid-template-columns: 1fr 1fr;
+      column-count: 2;
+    }
+
+    #blockContainer > * {
+      break-inside: avoid-column;
     }
 
     #elismeresek {
-      grid-column: span 2;
-      margin: auto;
+      text-align: center;
     }
   }
 
   #images {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
   #images > img {
-    min-width: 0;
+    min-width: 200px;
+    flex: 1;
   }
 </style>
