@@ -1,0 +1,90 @@
+---
+import background from '@/assets/room/background.png'
+---
+
+<div id="room"></div>
+
+<script>
+  const ORIENTATION_RANGE = 45
+  const IMAGE_SIZE = { WIDTH: 2000, HEIGHT: 1415 }
+
+  new (class {
+    isOrientationBased = false
+    gammaBounds = {
+      min: Number.POSITIVE_INFINITY,
+      max: Number.NEGATIVE_INFINITY,
+    }
+
+    refresh = () => {
+      this.bcr = this.room.getBoundingClientRect()
+      this.scale = Math.max(
+        this.bcr.width / IMAGE_SIZE.WIDTH,
+        this.bcr.height / IMAGE_SIZE.HEIGHT,
+      )
+
+      this.xExtra = this.scale * IMAGE_SIZE.WIDTH - this.bcr.width
+      this.yExtra = this.scale * IMAGE_SIZE.HEIGHT - this.bcr.height
+
+      this.room.style.setProperty('--scale', this.scale)
+    }
+
+    updatePosition = (xPos, yPos) => {
+      this.room.style.backgroundPosition = `${xPos * 100}% ${yPos * 100}%`
+
+      this.room.style.setProperty('--offset-x', -xPos * this.xExtra)
+      this.room.style.setProperty('--offset-y', -yPos * this.yExtra)
+    }
+
+    constructor() {
+      this.room = document.getElementById('room')
+      this.refresh()
+
+      this.room.addEventListener('mousemove', (e) => {
+        if (this.isOrientationBased) {
+          return
+        }
+        this.updatePosition(
+          (e.clientX - this.bcr.x) / this.bcr.width,
+          (e.clientY - this.bcr.y) / this.bcr.height,
+        )
+      })
+
+      window.addEventListener('deviceorientation', (e) => {
+        if (e.gamma === null) {
+          return
+        }
+        this.isOrientationBased = true
+
+        if (e.gamma < this.gammaBounds.min) {
+          this.gammaBounds.min = e.gamma
+          this.gammaBounds.max = this.gammaBounds.min + ORIENTATION_RANGE
+        }
+
+        if (e.gamma > this.gammaBounds.max) {
+          this.gammaBounds.max = e.gamma
+          this.gammaBounds.min = this.gammaBounds.max - ORIENTATION_RANGE
+        }
+
+        const hp = (this.gammaBounds.max - e.gamma) / ORIENTATION_RANGE
+        const vp = (e.gamma - this.gammaBounds.min) / ORIENTATION_RANGE
+
+        this.updatePosition(hp, vp)
+      })
+
+      window.addEventListener('resize', this.refresh)
+    }
+  })()
+</script>
+
+<style define:vars={{ ['background-src']: `url("${background.src}")` }}>
+  #room {
+    width: 100%;
+    height: 100%;
+    background-image: var(--background-src);
+    background-size: cover;
+
+    position: relative;
+
+    overflow: hidden;
+  }
+</style>
