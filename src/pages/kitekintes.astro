@@ -1,40 +1,84 @@
 ---
 import PageLayout from '@/layouts/Page.astro'
+
+import first from '@/assets/photos/1.jpg'
 ---
 
 <PageLayout>
-  //Családi mesekönyvünk
-  <p>
-    Kisfiam születésének hírére, Nagyapi nekiállt megírni a család fontosabb
-    plüssállatainak történeteit, én pedig belevetettem magam a
-    karaktertervezésbe és illusztrálásba. 2024 karácsonyán pedig már együtt
-    lapozhatták az unokák az első családi mesekönyvünket.
-  </p>
+  <div id="topicContainer">
+    <div class="topic">
+      <h2>Családi mesekönyvünk</h2>
+      <p>
+        Kisfiam születésének hírére, Nagyapi nekiállt megírni a család fontosabb
+        plüssállatainak történeteit, én pedig belevetettem magam a
+        karaktertervezésbe és illusztrálásba. 2024 karácsonyán pedig már együtt
+        lapozhatták az unokák az első családi mesekönyvünket.
+      </p>
+      <img src={first.src} style={{ width: '15%', top: '100%', left: '15%' }} />
+    </div>
 
-  //3d nyomtatás
-  <p>
-    Bár a férjem hatására került 3d nyomtató a háztartásunkba, mára már van,
-    hogy én használom többet. :)
-  </p>
+    <div class="topic">
+      <h2>3d nyomtatás</h2>
+      <p>
+        Bár a férjem hatására került 3d nyomtató a háztartásunkba, mára már van,
+        hogy én használom többet. :)
+      </p>
+    </div>
 
-  //festés, varrás, polotervek
-  <p>
-    A kézművesség kiskoromtól az életem részét képzi. A varrás, horgolás, festés
-    mind-mind olyan dolog, ami kikapcsol és még másoknak is örömet tudok
-    szerezni vele.
-  </p>
+    <div class="topic">
+      <h2>festés, varrás, polotervek</h2>
+      <p>
+        A kézművesség kiskoromtól az életem részét képzi. A varrás, horgolás,
+        festés mind-mind olyan dolog, ami kikapcsol és még másoknak is örömet
+        tudok szerezni vele.
+      </p>
+      <img src={first.src} style={{ width: '20%', top: '0%', left: '75%' }} />
+    </div>
 
-  //sport
-  <p>
-    Lovaglás, vívás, falmászás, túrázás, síelés, tollas... épp mikor mi
-    illeszhető bele az életembe. Mozogni mindenesetre nagyon szeretek!
-  </p>
+    <div class="topic">
+      <h2>sport</h2>
+      <p>
+        Lovaglás, vívás, falmászás, túrázás, síelés, tollas... épp mikor mi
+        illeszhető bele az életembe. Mozogni mindenesetre nagyon szeretek!
+      </p>
+    </div>
 
-  //honlap
-  <p>
-    Szeretek tanulni és új dolgokat kipróbálni. A férjem révén pedig olyan
-    dolgokba is bele merek kezdeni, ami egyedül túl nagy falat lenne. Az első
-    honlap készítési kísérletem a Batári Design építésziroda honlapja volt és ez
-    a portfólió pedig egy újabb kísérlet.
-  </p>
+    <div class="topic">
+      <h2>honlap</h2>
+      <p>
+        Szeretek tanulni és új dolgokat kipróbálni. A férjem révén pedig olyan
+        dolgokba is bele merek kezdeni, ami egyedül túl nagy falat lenne. Az
+        első honlap készítési kísérletem a Batári Design építésziroda honlapja
+        volt és ez a portfólió pedig egy újabb kísérlet.
+      </p>
+    </div>
+  </div>
 </PageLayout>
+
+<style>
+  #topicContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 256px;
+  }
+
+  .topic {
+    position: relative;
+
+    min-height: 256px;
+
+    padding: 8px;
+    border: 2px solid black;
+  }
+
+  .topic > img {
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    /* Copied from Level 4 shadow of Material UI */
+    box-shadow:
+      0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+</style>
