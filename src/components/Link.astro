@@ -4,7 +4,7 @@ const { pathname } = Astro.url
 ---
 
 <a
-  class:list={[...(pathname === path ? ['active'] : [])]}
+  class:list={[...(pathname.startsWith(path) ? ['active'] : [])]}
   href={path}
   {...rest}
 >

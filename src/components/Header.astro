@@ -18,7 +18,9 @@ const { pathname } = Astro.url
       <li><Link path="/tanulmanyok#elismeresek" label="Elismerések" /></li>
       <li>
         <details>
-          <summary class:list={[...(pathname === '/tervek' ? ['active'] : [])]}>
+          <summary
+            class:list={[...(pathname.startsWith('/tervek') ? ['active'] : [])]}
+          >
             Tervek
           </summary>
           <ul>
