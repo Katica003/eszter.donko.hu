@@ -141,20 +141,30 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 </PageLayout>
 
 <style>
+  :root {
+    --topic-height: 256px;
+    /*               (full  - header - (     topic         * pad)) / 2 */
+    --topic-gap: calc((100vh - 48px - (var(--topic-height) * 1.1)) / 2);
+  }
+
   #topicContainer {
     display: flex;
     flex-direction: column;
-    gap: 256px;
+
+    gap: var(--topic-gap);
+    padding: var(--topic-gap) 0;
   }
 
   .topic {
     position: relative;
 
-    min-height: 256px;
+    min-height: var(--topic-height);
 
     padding: 5%;
     /* border: 2px solid black; */
     background-color: rgb(203 206 199);
+
+    scroll-snap-align: center;
   }
 
   .topic > img {
