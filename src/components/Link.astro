@@ -1,0 +1,12 @@
+---
+const { path, label, ...rest } = Astro.props
+const { pathname } = Astro.url
+---
+
+<a
+  class:list={[...(pathname === path ? ['active'] : [])]}
+  href={path}
+  {...rest}
+>
+  {label}
+</a>

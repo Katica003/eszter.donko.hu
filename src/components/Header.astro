@@ -1,5 +1,9 @@
 ---
 import logo from '@/assets/logo.png'
+
+import Link from '@/components/Link.astro'
+
+const { pathname } = Astro.url
 ---
 
 <header>
@@ -9,12 +13,14 @@ import logo from '@/assets/logo.png'
   <a href="/"><img src={logo.src} /></a>
   <nav>
     <ul>
-      <li><a href="/bemutatkozas">Bemutatkozás</a></li>
-      <li><a href="/tanulmanyok">Tanulmányok</a></li>
-      <li><a href="/tanulmanyok#elismeresek">Elismerések</a></li>
+      <li><Link path="/bemutatkozas" label="Bemutatkozás" /></li>
+      <li><Link path="/tanulmanyok" label="Tanulmányok" /></li>
+      <li><Link path="/tanulmanyok#elismeresek" label="Elismerések" /></li>
       <li>
         <details>
-          <summary>Tervek</summary>
+          <summary class:list={[...(pathname === '/tervek' ? ['active'] : [])]}>
+            Tervek
+          </summary>
           <ul>
             <li><a href="/tervek#tanoda">Tanoda</a></li>
             <li><a href="/tervek#furdohaz">Fürdőház</a></li>
@@ -22,8 +28,8 @@ import logo from '@/assets/logo.png'
           </ul>
         </details>
       </li>
-      <li><a href="/kitekintes">Kitekintés</a></li>
-      <li><a href="/kapcsolat">Kapcsolat</a></li>
+      <li><Link path="/kitekintes" label="Kitekintés" /></li>
+      <li><Link path="/kapcsolat" label="Kapcsolat" /></li>
     </ul>
   </nav>
 </header>
@@ -94,6 +100,14 @@ import logo from '@/assets/logo.png'
     cursor: pointer;
 
     border-radius: 4px;
+  }
+
+  .active {
+    background-color: color-mix(
+      in oklab,
+      var(--background-color) 50%,
+      transparent
+    );
   }
 
   li > a:hover,
