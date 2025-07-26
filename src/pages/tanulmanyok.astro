@@ -7,12 +7,12 @@ import first from '@/assets/photos/1.jpg'
 import second from '@/assets/photos/2.jpg'
 import third from '@/assets/drawings/1.png'
 import fourth from '@/assets/photos/3.jpg'
+import bridge from '@/assets/photos/bridge.jpg'
 ---
 
 <PageLayout>
-  <h1>Tanulmányok</h1>
-  <div id="blockContainer">
-    <Block title="Tanulmányok">
+  <div class="blockContainer">
+    <Block class="block" title="Tanulmányok">
       <p>
         2003-2011:<br />
         Budaörsi Herman Ottó Általános Iskola
@@ -32,7 +32,11 @@ import fourth from '@/assets/photos/3.jpg'
       </p>
     </Block>
 
-    <Block title="Szakmai tevékenységek">
+    <img src={first.src} />
+  </div>
+
+  <div class="blockContainer">
+    <Block class="block" title="Szakmai tevékenységek">
       <p>DEKON építésziroda, szakmai gyakorlat</p>
       <p>BTR Design Műterem, szakmai gyakorlat és kisebb projektek</p>
       <p>
@@ -44,7 +48,11 @@ import fourth from '@/assets/photos/3.jpg'
       <p>2021 tavasz Középülettervezési Tanszék Demonstátor</p>
     </Block>
 
-    <Block title="Programismeret">
+    <img src={second.src} />
+  </div>
+
+  <div class="blockContainer">
+    <Block class="block" title="Programismeret">
       <p>ArchiCAD</p>
       <p>Gimp</p>
       <p>Inkscape</p>
@@ -52,63 +60,91 @@ import fourth from '@/assets/photos/3.jpg'
       <p>SketchUp</p>
       <p>Blender - Bonsai</p>
     </Block>
+    <img src={third.src} />
+  </div>
 
-    <Block title="Nelvtudás">
+  <div class="blockContainer">
+    <Block class="block" title="Nelvtudás és egyéb kompetenciák">
       <p>angol (B2)</p>
       <p>német (B2)</p>
-    </Block>
-
-    <Block title="Egyéb kompetenciák">
+      <p></p>
       <p>B2 jogosítvány</p>
       <p>ECDL vizsga</p>
     </Block>
+
+    <img src={fourth.src} />
   </div>
 
-  <Block id="elismeresek" title="Elismerések">
-    <p>
-      2019. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
-      Cím: A szocreál rétegei <br />
-      Társszerző: Örökös-Tóth Eszter, Konzulens: Kissfazekas Kornélia PhD
-    </p>
-    <p>
-      2020. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
-      Cím: Természetesen - Jelenlét a megtörtségben <br />
-      Társszerző: Örökös-Tóth Eszter, Konzulens: Kemes Balázs DLA
-    </p>
-    <p>2022 MÉSZ Diplomadíj - Dícséret</p>
-  </Block>
+  <!-- <Block class="block" title="Egyéb kompetenciák">
+    <p>B2 jogosítvány</p>
+    <p>ECDL vizsga</p>
+  </Block> -->
 
-  <div id="images">
+  <div class="blockContainer">
+    <Block class="block" id="elismeresek" title="Elismerések">
+      <p>
+        2019. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
+        Cím: A szocreál rétegei <br />
+        Társszerző: Örökös-Tóth Eszter, Konzulens: Kissfazekas Kornélia PhD
+      </p>
+      <p>
+        2020. évi Tudományos Diákköri Konferencia - Prezentációs különdíj <br />
+        Cím: Természetesen - Jelenlét a megtörtségben <br />
+        Társszerző: Örökös-Tóth Eszter, Konzulens: Kemes Balázs DLA
+      </p>
+      <p>2022 MÉSZ Diplomadíj - Dícséret</p>
+    </Block>
+    <img src={bridge.src} />
+  </div>
+
+  <!-- <div id="images">
     <img src={first.src} />
     <img src={second.src} />
     <img src={third.src} />
     <img src={fourth.src} />
-  </div>
+  </div> -->
 </PageLayout>
 
 <style>
+  .blockContainer {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    /* gap: 80px; */
+    margin-bottom: 100px;
+  }
+
+  /* .block {
+    margin-bottom: 50px;
+  } */
+
+  img {
+    width: 55%;
+    place-self: center;
+    padding-top: 30px;
+  }
+
+  #images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  #images > img {
+    min-width: 200px;
+    flex: 1;
+  }
+
   @media (min-width: 1000px) {
     #blockContainer {
-      column-count: 2;
+      /* column-count: 2; */
     }
 
     #blockContainer > * {
       break-inside: avoid-column;
     }
 
-    #elismeresek {
+    /* #elismeresek {
       text-align: center;
-    }
-  }
-
-  #images {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  #images > img {
-    min-width: 200px;
-    flex: 1;
+    } */
   }
 </style>
