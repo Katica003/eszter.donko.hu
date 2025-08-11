@@ -1,19 +1,34 @@
 ---
 import background from '@/assets/room/background.png'
+import boots from '@/assets/room/boots.png'
+import folder from '@/assets/room/folder.png'
+import frame from '@/assets/room/frame.png'
+import laptop from '@/assets/room/laptop.png'
+import phone from '@/assets/room/phone.png'
+import sewing from '@/assets/room/sewing.png'
 ---
 
-<div id="room"></div>
+<div id="room">
+  <!-- <div id="output">output</div> -->
+  <a id="boots" class="extra" href="kitekintes"><img src={boots.src} /></a>
+  <a id="folder" class="extra" href="tervek"><img src={folder.src} /></a>
+  <a id="frame" class="extra" href="bemutatkozas"><img src={frame.src} /></a>
+  <a id="laptop" class="extra" href="tanulmanyok"><img src={laptop.src} /></a>
+  <a id="phone" class="extra" href="kapcsolat"><img src={phone.src} /></a>
+  <a id="sewing" class="extra" href="kitekintes"><img src={sewing.src} /></a>
+</div>
 
-<script>
+<script define:vars={{ background }}>
   const ORIENTATION_RANGE = 45
-  const IMAGE_SIZE = { WIDTH: 2000, HEIGHT: 1415 }
+  const IMAGE_SIZE = { WIDTH: background.width, HEIGHT: background.height }
 
   new (class {
     isOrientationBased = false
-    gammaBounds = {
-      min: Number.POSITIVE_INFINITY,
-      max: Number.NEGATIVE_INFINITY,
-    }
+    // gammaBounds = {
+    //   min: Number.POSITIVE_INFINITY,
+    //   max: Number.NEGATIVE_INFINITY,
+    // }
+    gammaBounds = undefined
 
     refresh = () => {
       this.bcr = this.room.getBoundingClientRect()
@@ -55,6 +70,13 @@ import background from '@/assets/room/background.png'
         }
         this.isOrientationBased = true
 
+        if (this.gammaBounds === undefined) {
+          this.gammaBounds = {
+            min: e.gamma - ORIENTATION_RANGE / 2,
+            max: e.gamma + ORIENTATION_RANGE / 2,
+          }
+        }
+
         if (e.gamma < this.gammaBounds.min) {
           this.gammaBounds.min = e.gamma
           this.gammaBounds.max = this.gammaBounds.min + ORIENTATION_RANGE
@@ -86,5 +108,62 @@ import background from '@/assets/room/background.png'
     position: relative;
 
     overflow: hidden;
+    opacity: 0;
+
+    animation: 1s fade-in 0.1s forwards;
+  }
+
+  .extra {
+    position: absolute;
+    transform-origin: 0% 0%;
+    scale: var(--scale);
+    translate: calc(var(--offset-x) * 1px) calc(var(--offset-y) * 1px);
+  }
+
+  #boots {
+    top: calc(var(--scale) * 1300px);
+    left: calc(var(--scale) * 155px);
+  }
+
+  #folder {
+    top: calc(var(--scale) * 940px);
+    left: calc(var(--scale) * 1015px);
+  }
+
+  #frame {
+    top: calc(var(--scale) * 55px);
+    left: calc(var(--scale) * 580px);
+  }
+
+  #laptop {
+    top: calc(var(--scale) * 610px);
+    left: calc(var(--scale) * 950px);
+  }
+
+  #phone {
+    top: calc(var(--scale) * 1400px);
+    left: calc(var(--scale) * 1265px);
+  }
+
+  #sewing {
+    top: calc(var(--scale) * 550px);
+    left: calc(var(--scale) * 1975px);
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .extra img {
+    transition: scale 0.25s;
+  }
+
+  .extra img:hover {
+    scale: 110%;
   }
 </style>
