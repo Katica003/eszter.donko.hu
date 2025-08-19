@@ -117,39 +117,21 @@ import sewing from '@/assets/room/sewing.png'
 
   .extra {
     position: absolute;
+    top: calc(var(--scale) * var(--placement-y));
+    left: calc(var(--scale) * var(--placement-x));
     transform-origin: 0% 0%;
     scale: var(--scale);
     translate: calc(var(--offset-x) * 1px) calc(var(--offset-y) * 1px);
   }
 
-  #boots {
-    top: calc(var(--scale) * 1300px);
-    left: calc(var(--scale) * 155px);
-  }
-
-  #folder {
-    top: calc(var(--scale) * 940px);
-    left: calc(var(--scale) * 1015px);
-  }
-
-  #frame {
-    top: calc(var(--scale) * 55px);
-    left: calc(var(--scale) * 580px);
-  }
-
-  #laptop {
-    top: calc(var(--scale) * 610px);
-    left: calc(var(--scale) * 950px);
-  }
-
-  #phone {
-    top: calc(var(--scale) * 1400px);
-    left: calc(var(--scale) * 1265px);
-  }
-
-  #sewing {
-    top: calc(var(--scale) * 550px);
-    left: calc(var(--scale) * 1975px);
+  /* prettier-ignore */
+  @media {
+    #boots  { --placement-x: 155px;  --placement-y: 1300px; }
+    #folder { --placement-x: 1015px; --placement-y: 940px;  }
+    #frame  { --placement-x: 580px;  --placement-y: 55px;   }
+    #laptop { --placement-x: 950px;  --placement-y: 610px;  }
+    #phone  { --placement-x: 1265px; --placement-y: 1400px; }
+    #sewing { --placement-x: 1975px; --placement-y: 550px;  }
   }
 
   @keyframes fade-in {
