@@ -1,7 +1,36 @@
 ---
 import PageLayout from '@/layouts/Page.astro'
+
+import Icon from '@/components/Icon.astro'
 ---
 
 <PageLayout>
-  <p>🚧 TODO 🚧</p>
+  <div id="container">
+    <h1>Donkó Eszter Klára</h1>
+    <h2>Okleveles építészmérnök</h2>
+    <p><Icon class="icon" symbol="phone" />+36 30 384 7783</p>
+    <p><Icon class="icon" symbol="mail" />eszter@donko.hu</p>
+    <p><Icon class="icon" symbol="photo" />@katica003</p>
+  </div>
 </PageLayout>
+
+<style>
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  #container {
+    text-align: center;
+  }
+
+  .icon {
+    font-size: 32px;
+    vertical-align: middle;
+  }
+
+  p {
+    margin: 8px;
+    font-size: 24px;
+  }
+</style>

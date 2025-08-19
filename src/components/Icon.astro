@@ -1,0 +1,18 @@
+---
+const { symbol, ...rest } = Astro.props
+---
+
+<span {...rest}>{symbol}</span>
+
+<style is:global>
+  @font-face {
+    font-family: 'Material Symbols Outlined';
+    src: url('/fonts/MaterialSymbolsOutlined.woff2');
+  }
+</style>
+
+<style>
+  span {
+    font-family: 'Material Symbols Outlined';
+  }
+</style>
