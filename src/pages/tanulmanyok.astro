@@ -96,55 +96,31 @@ import bridge from '@/assets/photos/bridge.jpg'
     </Block>
     <img src={bridge.src} />
   </div>
-
-  <!-- <div id="images">
-    <img src={first.src} />
-    <img src={second.src} />
-    <img src={third.src} />
-    <img src={fourth.src} />
-  </div> -->
 </PageLayout>
 
 <style>
   .blockContainer {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    /* gap: 80px; */
-    margin-bottom: 100px;
+    margin-bottom: 64px;
+    scroll-snap-align: center;
   }
-
-  /* .block {
-    margin-bottom: 50px;
-  } */
 
   img {
-    width: 55%;
+    width: 100%;
+    box-sizing: border-box;
     place-self: center;
-    padding-top: 30px;
   }
 
-  #images {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  #images > img {
-    min-width: 200px;
-    flex: 1;
-  }
-
-  @media (min-width: 1000px) {
-    #blockContainer {
-      /* column-count: 2; */
+  @media (min-width: 900px) {
+    img {
+      padding: 64px;
     }
+  }
 
-    #blockContainer > * {
-      break-inside: avoid-column;
+  @media (max-width: 900px) {
+    .blockContainer {
+      grid-template-columns: 1fr;
     }
-
-    /* #elismeresek {
-      text-align: center;
-    } */
   }
 </style>
