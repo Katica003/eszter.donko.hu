@@ -1,10 +1,10 @@
 ---
-import PageLayout from '@/layouts/Page.astro'
+import MainLayout from '@/layouts/Main.astro'
 
 import profile from '@/assets/profile.jpg'
 ---
 
-<PageLayout>
+<MainLayout>
   <div id="container">
     <div id="content">
       <p>
@@ -26,24 +26,46 @@ import profile from '@/assets/profile.jpg'
     </div>
     <img src={profile.src} />
   </div>
-</PageLayout>
+</MainLayout>
 
 <style>
   div#container {
+    max-width: 1200px;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    margin: auto;
+    padding: 64px;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 125px;
+    grid-template-areas: 'text image';
+    gap: 128px;
   }
 
   div#content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    grid-area: text;
 
     text-align: center;
+    align-self: center;
   }
 
   img {
+    grid-area: image;
+
     width: 100%;
+
+    align-self: center;
+  }
+
+  @media (max-width: 900px) {
+    div#container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'image'
+        'text';
+      gap: 24px;
+    }
   }
 </style>
