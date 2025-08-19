@@ -134,12 +134,29 @@ import sewing from '@/assets/room/sewing.png'
     #sewing { --placement-x: 1975px; --placement-y: 550px;  }
   }
 
+  .extra {
+    animation: 3s ease-in-out 1s infinite alternate shine;
+  }
+
+  .extra:hover {
+    animation: unset;
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes shine {
+    from {
+      filter: brightness(100%);
+    }
+    to {
+      filter: brightness(150%);
     }
   }
 
