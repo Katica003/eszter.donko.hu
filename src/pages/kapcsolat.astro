@@ -1,36 +1,60 @@
 ---
-import PageLayout from '@/layouts/Page.astro'
+import MainLayout from '@/layouts/Main.astro'
 
 import Icon from '@/components/Icon.astro'
 ---
 
-<PageLayout>
+<MainLayout>
   <div id="container">
     <h1>Donkó Eszter Klára</h1>
     <h2>Okleveles építészmérnök</h2>
-    <p><Icon class="icon" symbol="phone" />+36 30 384 7783</p>
-    <p><Icon class="icon" symbol="mail" />eszter@donko.hu</p>
-    <p><Icon class="icon" symbol="photo" />@katica003</p>
+    <table>
+      <tr>
+        <td><Icon class="icon" symbol="mail" /></td>
+        <td><a href="mailto:eszter@donko.hu">eszter@donko.hu</a></td>
+      </tr>
+      <tr>
+        <td><Icon class="icon" symbol="phone" /></td>
+        <td><a href="tel:+36 30 384 7783">+36 30 384 7783</a></td>
+      </tr>
+      <tr>
+        <td><Icon class="icon" symbol="photo_camera" /></td>
+        <td><a href="https://www.instagram.com/katica003">@katica003</a></td>
+      </tr>
+    </table>
   </div>
-</PageLayout>
+</MainLayout>
 
 <style>
+  #container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+  }
+
   h1,
   h2 {
     margin: 0;
   }
 
-  #container {
-    text-align: center;
+  table {
+    margin: 24px auto;
+    font-size: 24px;
+  }
+
+  td:nth-child(2) {
+    padding-left: 16px;
   }
 
   .icon {
-    font-size: 32px;
+    font-size: 38px;
     vertical-align: middle;
   }
 
-  p {
-    margin: 8px;
-    font-size: 24px;
+  a {
+    color: unset;
   }
 </style>
