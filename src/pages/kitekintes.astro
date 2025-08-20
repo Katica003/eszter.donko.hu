@@ -19,18 +19,9 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 
 <PageLayout>
   <div id="topicContainer">
-    <div
-      class="topic"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'end',
-      }}
-    >
+    <div class="topic">
       <!-- <h2>Egyetem</h2> -->
-      <div
-        style={{ position: 'absolute', width: '40%', top: '10%', left: '55%' }}
-      >
+      <div style={{ width: '40%', top: '10%', left: '55%' }}>
         <p>
           Számomra nagyon motiváló volt az egyetemi évek változatossága.
           Szerettem, hogy egyszerre volt jelen a rajz és a matek, a művészet és
@@ -51,9 +42,7 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 
     <div class="topic">
       <!-- <h2>Családi mesekönyvünk</h2> -->
-      <div
-        style={{ position: 'absolute', width: '42%', top: '22%', left: '20%' }}
-      >
+      <div style={{ width: '42%', top: '22%', left: '20%' }}>
         <p>
           Kisfiam születésének hírére, Nagyapi nekiállt megírni a család
           fontosabb plüssállatainak történeteit, én pedig belevetettem magam a
@@ -71,9 +60,7 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 
     <div class="topic">
       <!-- <h2>3d nyomtatás</h2> -->
-      <div
-        style={{ position: 'absolute', width: '35%', top: '25%', left: '32%' }}
-      >
+      <div style={{ width: '35%', top: '25%', left: '32%' }}>
         <p>
           Bár a férjem hatására került 3d nyomtató a háztartásunkba, mára már
           van, hogy én használom többet. :)
@@ -92,11 +79,13 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 
     <div class="topic">
       <!-- <h2>festés, varrás, polotervek</h2> -->
-      <p>
-        A kézművesség kiskoromtól az életem részét képzi. A varrás, horgolás,
-        festés mind-mind olyan dolog, ami kikapcsol és még másoknak is örömet
-        tudok szerezni vele.
-      </p>
+      <div>
+        <p>
+          A kézművesség kiskoromtól az életem részét képzi. A varrás, horgolás,
+          festés mind-mind olyan dolog, ami kikapcsol és még másoknak is örömet
+          tudok szerezni vele.
+        </p>
+      </div>
       <img
         src={pillow.src}
         style={{ height: '50%', top: '65%', left: '61%' }}
@@ -114,9 +103,7 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 
     <div class="topic">
       <!-- <h2>sport</h2> -->
-      <div
-        style={{ position: 'absolute', width: '57%', top: '11%', left: '10%' }}
-      >
+      <div style={{ width: '57%', top: '11%', left: '10%' }}>
         <p>
           Lovaglás, vívás, falmászás, túrázás, síelés, tollas... épp mikor mi
           illeszhető bele az életembe. Mozogni mindenesetre nagyon szeretek!
@@ -129,12 +116,14 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
 
     <div class="topic">
       <!-- <h2>honlap</h2> -->
-      <p>
-        Szeretek tanulni és új dolgokat kipróbálni. A férjem révén pedig olyan
-        dolgokba is bele merek kezdeni, ami egyedül túl nagy falat lenne. Az
-        első honlap készítési kísérletem a Batári Design építésziroda honlapja
-        volt és ez a portfólió pedig egy újabb kísérlet.
-      </p>
+      <div>
+        <p>
+          Szeretek tanulni és új dolgokat kipróbálni. A férjem révén pedig olyan
+          dolgokba is bele merek kezdeni, ami egyedül túl nagy falat lenne. Az
+          első honlap készítési kísérletem a Batári Design építésziroda honlapja
+          volt és ez a portfólió pedig egy újabb kísérlet.
+        </p>
+      </div>
       <img src={btrd.src} style={{ width: '20%', top: '68%', left: '75%' }} />
     </div>
   </div>
@@ -167,6 +156,10 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
     scroll-snap-align: center;
   }
 
+  .topic > div {
+    position: absolute;
+  }
+
   .topic > img {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -176,5 +169,27 @@ import folding from '@/assets/photos/hoffmann_eszter_3feladat_3b.jpg'
       0px 2px 4px -1px rgba(0, 0, 0, 0.2),
       0px 4px 5px 0px rgba(0, 0, 0, 0.14),
       0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  @media (max-width: 900px) {
+    .topic > div {
+      width: 100% !important;
+
+      position: unset;
+      top: unset !important;
+      left: unset !important;
+    }
+
+    .topic > img {
+      display: inline-block;
+      width: 40% !important;
+      height: unset !important;
+
+      position: unset;
+      top: unset !important;
+      left: unset !important;
+
+      transform: unset;
+    }
   }
 </style>
