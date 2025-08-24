@@ -50,13 +50,12 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
 <PageLayout>
   <div id="planContainer">
     <div id="tanoda" class="plan">
-      <div class="slide cover">
+      <div class="slide cover" style={{ color: '#5386ba' }}>
         <img src={tCover.src} />
-        <p>BUDAÖRSI TANODA - DIPLOMAMUNKA</p>
-        <p>2022</p>
+        <h2>Budaörsi Tanoda - Diplomamunka, 2022</h2>
       </div>
       <div class="slide text">
-        <h2>Budaörsi Tanoda - Diplomamunka, 2022</h2>
+        <!-- <h2>Budaörsi Tanoda - Diplomamunka, 2022</h2> -->
         <p>
           Budaörs a főváros agglomerációjában található egyik legfejlettebb
           település. Történelme az 1200-as évekre nyúlik vissza. Az 1700-as
@@ -73,9 +72,6 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
           sportágakkal foglalkozó egyesületek és szakkörök kötik le a fiatalok
           energiáit.
         </p>
-      </div>
-
-      <div class="slide text">
         <p>
           Az épületem célközönsége alapvetően a budaörsi diákság (10-20 éves
           kor). Egy olyan közösségi - szabadidő lekötésére és tanulásra is
@@ -107,9 +103,6 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
           számára. A nyár során a kerten lesz a fő hangsúly. Táboroztatásnak,
           vagy csak a szabad játéknak is ez lehet a tere.
         </p>
-      </div>
-
-      <div class="slide text">
         <p>
           A középfőfalas hosszházas épület falazata 50-es Porotherm
           falazóblokkból készül hőszigetelés nélkül, téglaporos vakolattal. A
@@ -122,6 +115,7 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
           kerítésben él tovább.
         </p>
       </div>
+
       <div class="slide"><img src={tAlaprajz1.src} /></div>
       <div class="slide"><img src={tAlaprajz2.src} /></div>
       <div class="slide"><img src={tHomlokzat.src} /></div>
@@ -137,13 +131,12 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
     </div>
 
     <div id="furdohaz" class="plan">
-      <div class="slide cover">
+      <div class="slide cover" style={{ color: '#2c2f6b' }}>
         <img src={fCover.src} />
-        <p>MONOR FÜRDŐHÁZ</p>
-        <p>2021</p>
+        <h2>Monor fürdőház, 2021</h2>
       </div>
       <div class="slide text">
-        <h2>Monor fürdőház, 2021</h2>
+        <!-- <h2>Monor fürdőház, 2021</h2> -->
         <p>
           A monori Tabán telep központjában található telekegyüttest a terület
           köztereként kívánom hasznosítani. Cél a munkahelyteremtés, az
@@ -159,7 +152,7 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
         </p>
       </div>
       <div class="slide"><img src={fVizsgalat1.src} /></div>
-      <div class="slide"><img src={fVizsgalat2.src} /></div>
+      <!-- <div class="slide"><img src={fVizsgalat2.src} /></div> -->
       <div class="slide"><img src={fVizsgalat3.src} /></div>
       <div class="slide"><img src={fHelyszinrajz.src} /></div>
       <div class="slide"><img src={fAlaprajz1.src} /></div>
@@ -176,13 +169,12 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
     </div>
 
     <div id="TDK" class="plan">
-      <div class="slide cover">
+      <div class="slide cover" style={{ backgroundColor: '#ececec' }}>
         <img src={tdkCover.src} />
-        <p>BUDAÖRSI TANODA - DIPLOMAMUNKA</p>
-        <p>2022</p>
+        <h2>Természetesen, jelenlét a megtörtségben - TDK, 2020</h2>
       </div>
       <div class="slide text">
-        <h2>Természetesen, jelenlét a megtörtségben - TDK, 2020</h2>
+        <!-- <h2>Természetesen, jelenlét a megtörtségben - TDK, 2020</h2> -->
         <p>
           Természetközeli helyszínünk a Budai hegyekben, a Mária zarándokút, a
           Filmarchívum üzemi épülete és az egyre sűrűsödő zöld keresztezi. Az
@@ -259,6 +251,10 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
     scroll-snap-type: x mandatory;
   }
 
+  .plan:focus-visible {
+    outline: none;
+  }
+
   .slide {
     flex: 0 0 100%;
     scroll-snap-align: center;
@@ -268,6 +264,13 @@ import tdkMetszet3 from '@/assets/TDK/metszet3.png'
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: white;
+  }
+
+  .slide.cover h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-bottom: 30px;
   }
 
   .slide.text {
