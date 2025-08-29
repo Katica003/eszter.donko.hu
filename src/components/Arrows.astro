@@ -1,0 +1,126 @@
+---
+import Icon from '@/components/Icon.astro'
+
+const { container, ...rest } = Astro.props
+---
+
+<!--
+<Icon
+  id="arrowUp"
+  class="arrow"
+  style={{
+    top: '0%',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(25%)',
+  }}
+  symbol="keyboard_arrow_up"
+/>
+<Icon
+  id="arrowDown"
+  class="arrow"
+  style={{
+    bottom: '0%',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(25%)',
+  }}
+  symbol="keyboard_arrow_down"
+/>
+-->
+<div
+  id="arrowLeft"
+  class="arrow"
+  style={{
+    top: '50%',
+    left: 'var(--arrow-margin, -64px)',
+    transform: 'translateY(-25%)',
+  }}
+>
+  <Icon symbol="keyboard_arrow_left" />
+</div>
+<div
+  id="arrowRight"
+  class="arrow"
+  style={{
+    top: '50%',
+    right: 'var(--arrow-margin, -64px)',
+    transform: 'translateY(-25%)',
+  }}
+>
+  <Icon symbol="keyboard_arrow_right" />
+</div>
+
+<script>
+  const throttle = (func, time) => {
+    const state = { last: -Infinity }
+    return (...args) => {
+      if (Date.now() - state.last > time) {
+        state.last = Date.now()
+        func(...args)
+      }
+    }
+  }
+
+  const main = document.getElementsByTagName('main')[0]
+
+  const verticalScroll = (direction) => {
+    console.log(direction)
+    main.scrollTo({
+      top: main.scrollTop + main.clientHeight * direction,
+      behavior: 'smooth',
+    })
+  }
+
+  const horizontalScroll = (direction) => {
+    const index = Math.floor(main.scrollTop / main.clientHeight)
+    const plan = document.getElementById('planContainer').children[index]
+    plan.scrollTo({
+      left: plan.scrollLeft + plan.clientWidth * direction,
+      behavior: 'smooth',
+    })
+  }
+
+  document.getElementById('arrowLeft').addEventListener('click', () => {
+    horizontalScroll(-1)
+  })
+  document.getElementById('arrowRight').addEventListener('click', () => {
+    horizontalScroll(1)
+  })
+
+  const update = () =>
+    main.style.setProperty(
+      '--arrow-margin',
+      `${Math.max(0, (document.body.clientWidth - 1300) / 3)}px`,
+    )
+  window.addEventListener('resize', update)
+  window.addEventListener('load', update)
+
+  const throttledVerticalScroll = throttle(verticalScroll, 250)
+
+  document.querySelectorAll('.arrow').forEach((a) =>
+    a.addEventListener('wheel', (e) => {
+      throttledVerticalScroll(-Math.sign(e.wheelDeltaY))
+    }),
+  )
+</script>
+
+<style>
+  .arrow {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+
+    cursor: pointer;
+    user-select: none;
+
+    font-size: 128px;
+    font-weight: 100;
+
+    overflow: hidden;
+    z-index: 1;
+  }
+</style>
