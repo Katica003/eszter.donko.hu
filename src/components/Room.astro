@@ -21,7 +21,29 @@ import sewing from '@/assets/room/sewing.png'
 </div>
 
 <script define:vars={{ background }}>
+  class SensorInputSmoother {
+    #size = undefined
+    #data = undefined
+    #output = undefined
+
+    constructor(size, output) {
+      this.#size = size
+      this.#data = []
+      this.#output = output
+    }
+
+    input = (n) => {
+      this.#data.push(n)
+
+      if (this.#data.length > this.#size) {
+        this.#output(this.#data.reduce((a, b) => a + b) / this.#data.length)
+        this.#data.shift()
+      }
+    }
+  }
+
   const ORIENTATION_RANGE = 45
+  const ORIENTATION_SMOOTHING = 25
   const IMAGE_SIZE = { WIDTH: background.width, HEIGHT: background.height }
 
   new (class {
@@ -66,33 +88,38 @@ import sewing from '@/assets/room/sewing.png'
         )
       })
 
+
+      const sis = new SensorInputSmoother(ORIENTATION_SMOOTHING, (value) => {
+        if (this.gammaBounds === undefined) {
+          this.gammaBounds = {
+            min: value - ORIENTATION_RANGE / 2,
+            max: value + ORIENTATION_RANGE / 2,
+          }
+        }
+
+        if (value < this.gammaBounds.min) {
+          this.gammaBounds.min = value
+          this.gammaBounds.max = this.gammaBounds.min + ORIENTATION_RANGE
+        }
+
+        if (value > this.gammaBounds.max) {
+          this.gammaBounds.max = value
+          this.gammaBounds.min = this.gammaBounds.max - ORIENTATION_RANGE
+        }
+
+        const hp = (this.gammaBounds.max - value) / ORIENTATION_RANGE
+        const vp = (value - this.gammaBounds.min) / ORIENTATION_RANGE
+
+        this.updatePosition(hp, vp)
+      })
+
       window.addEventListener('deviceorientation', (e) => {
         if (e.gamma === null) {
           return
         }
         this.isOrientationBased = true
 
-        if (this.gammaBounds === undefined) {
-          this.gammaBounds = {
-            min: e.gamma - ORIENTATION_RANGE / 2,
-            max: e.gamma + ORIENTATION_RANGE / 2,
-          }
-        }
-
-        if (e.gamma < this.gammaBounds.min) {
-          this.gammaBounds.min = e.gamma
-          this.gammaBounds.max = this.gammaBounds.min + ORIENTATION_RANGE
-        }
-
-        if (e.gamma > this.gammaBounds.max) {
-          this.gammaBounds.max = e.gamma
-          this.gammaBounds.min = this.gammaBounds.max - ORIENTATION_RANGE
-        }
-
-        const hp = (this.gammaBounds.max - e.gamma) / ORIENTATION_RANGE
-        const vp = (e.gamma - this.gammaBounds.min) / ORIENTATION_RANGE
-
-        this.updatePosition(hp, vp)
+        sis.input(e.gamma)
       })
 
       window.addEventListener('resize', this.refresh)
